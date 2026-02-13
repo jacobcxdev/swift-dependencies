@@ -81,7 +81,7 @@ public func prepareDependencies<R>(
   _ updateValues: (inout DependencyValues) throws -> R
 ) rethrows -> R {
   var dependencies = DependencyValues._current
-  #if canImport(SwiftUI)
+  #if canImport(SwiftUI) && !os(Android)
     if Thread.isPreviewAppEntryPoint {
       dependencies = DependencyValues()
     }

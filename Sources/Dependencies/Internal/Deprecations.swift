@@ -1,10 +1,10 @@
-#if canImport(SwiftUI)
+#if canImport(SwiftUI) && !os(Android)
   import SwiftUI
 #endif
 
 // MARK: - Deprecated after 1.9.2
 
-#if canImport(SwiftUI) && compiler(>=6)
+#if canImport(SwiftUI) && !os(Android) && compiler(>=6)
   @available(iOS 18, macOS 15, tvOS 18, watchOS 11, visionOS 2, *)
   extension PreviewTrait where T == Preview.ViewTraits {
     @available(
