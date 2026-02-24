@@ -26,10 +26,10 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/jacobcxdev/combine-schedulers", branch: "flote/service-app"),
-    .package(url: "https://github.com/jacobcxdev/swift-clocks", branch: "flote/service-app"),
-    .package(url: "https://github.com/pointfreeco/swift-concurrency-extras", from: "1.0.0"),
-    .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "1.4.0"),
+    .package(path: "../combine-schedulers"),
+    .package(path: "../swift-clocks"),
+    .package(path: "../swift-concurrency-extras"),
+    .package(path: "../xctest-dynamic-overlay"),
     .package(url: "https://github.com/swiftlang/swift-syntax", "509.0.0"..<"603.0.0"),
   ],
   targets: [
