@@ -24,7 +24,7 @@ let package = Package(
   dependencies: [
     .package(path: "../combine-schedulers"),
     .package(path: "../swift-clocks"),
-    .package(url: "https://github.com/pointfreeco/swift-concurrency-extras", from: "1.0.0"),
+    .package(path: "../swift-concurrency-extras"),
     .package(path: "../xctest-dynamic-overlay"),
     .package(url: "https://github.com/swiftlang/swift-syntax", "509.0.0"..<"603.0.0"),
   ],
@@ -84,7 +84,7 @@ let package = Package(
 
 #if !os(WASI)
   package.dependencies.append(contentsOf: [
-    .package(url: "https://github.com/pointfreeco/swift-macro-testing", from: "0.2.0")
+    .package(path: "../swift-macro-testing")
   ])
   package.targets.append(contentsOf: [
     .testTarget(
