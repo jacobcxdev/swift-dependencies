@@ -72,7 +72,7 @@
 public struct Dependency<Value>: _HasInitialValues {
   let initialValues: DependencyValues = DependencyValues._current
   private var installValues: DependencyValues?
-  #if canImport(SwiftUI)
+  #if canImport(SwiftUI) && !os(Android)
     @Environment(\.dependencies) private var environmentValues
   #endif
 
@@ -207,13 +207,15 @@ public struct Dependency<Value>: _HasInitialValues {
   extension Dependency: @unchecked Sendable {}
 #endif
 
-#if canImport(SwiftUI)
+#if canImport(SwiftUI) && !os(Android)
   extension Dependency: DynamicProperty {
     public mutating func update() {
       install(environmentValues)
     }
   }
+#endif
 
+#if canImport(SwiftUI)
   extension EnvironmentValues {
     public var dependencies: DependencyValues {
       get { self[DependencyValuesKey.self] }
@@ -221,6 +223,7 @@ public struct Dependency<Value>: _HasInitialValues {
     }
   }
 
+  #if !os(Android)
   @available(iOS 14, macOS 11, tvOS 14, watchOS 7, *)
   extension Scene {
     /// Threads a dependency through a SwiftUI view hierarchy.
@@ -261,6 +264,7 @@ public struct Dependency<Value>: _HasInitialValues {
       )
     }
   }
+  #endif
 
   extension View {
     /// Threads a dependency through a SwiftUI view hierarchy.
